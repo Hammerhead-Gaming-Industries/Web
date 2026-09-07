@@ -190,6 +190,18 @@
         .download-btn:hover {
             opacity: 0.9;
         }
+		.github-btn {
+            background: var(--accent-gradient);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+			gap-bottom: 30px;
+        }
 
 
         @keyframes fadeIn {
@@ -448,10 +460,11 @@
     <main class="main-content">
         <section class="page-content">
             <h2 class="content-title">Dashboard Overview</h2>
-            <p class="content-subtitle"></p>
-            
+            <p class="content-subtitle">Welcome! Come back later for info or contact us at adminhammerhead81@gmail.com</p> 
+			<a href="https://github.com/Hammerhead-Gaming-Industries?view_as=public" class="github-btn">GitHub Home Page</a>
+            <div>-------------------------</div>
             <!-- Metrics Grid -->
-            <div class="metrics-grid">
+           <!-- <div class="metrics-grid">
                 <div class="metric-card">
                     <span class="metric-label">Profits</span>
                     <div class="metric-value">$00.00</div>
@@ -472,9 +485,10 @@
                     <div class="metric-value">0%</div>
                     <span class="metric-trend trend-up">+0%</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Recent Activity Log -->
+			
             <div class="activity-section">
                 <h3 class="activity-title">Recent Activity</h3>
                 <div class="activity-list">
