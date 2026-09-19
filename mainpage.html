@@ -396,6 +396,17 @@
             .content-title {
                 font-size: 1.5rem;
             }
+			.admin-btn {
+            padding: 8px 16px;
+            background: var(--accent-gradient);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .admin-btn:hover {
+            background-color: #555;
+        }
 
             .metrics-grid {
                 grid-template-columns: repeat(2, 1fr); /* 2x2 grid format layout split for mobile profiles */
@@ -424,12 +435,15 @@
 
     <!-- Sidebar / Top Navbar Layout -->
     <aside class="sidebar">
+		
+        
         <div class="brand-section">
             <!-- Ensure the image file path matches here -->
             <img src="Images/Logo.jpeg" alt="Hammerhead Gaming Logo" class="logo">
+			<a href="adminlogin.html" class="admin-btn">Login</a>	
             <h1 class="studio-title">Hammerhead Gaming Industries</h1>
         </div>
-        
+       
         <!-- Navigation Links with Numbered Labels -->
         <nav class="tab-menu">
             <a href="#" class="tab-link active">

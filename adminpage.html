@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hammerhead Gaming</title>
+    <style>
+      
+        :root {
+            --bg-primary: #ffffff;
+            --bg-sidebar: #0a192f;
+            --accent-blue: #007bff;
+            --accent-gradient: linear-gradient(135deg, #0056b3, #00a2ff);
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --text-muted: #6c757d;
+            --border-color: #e9ecef;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .brand-section {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0px 4px 10px rgba(0, 123, 255, 0.3));
+        }
+
+        .studio-title {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Navigation Links Layout */
+        .tab-menu {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .tab-link {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tab-link:hover {
+            color: var(--text-light);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-link.active {
+            color: var(--text-light);
+            background: rgba(0, 123, 255, 0.15);
+            border-left-color: var(--accent-blue);
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 40px;
+            background-color: #f8f9fa;
+        }
+
+        .page-content {
+            animation: fadeIn 0.4s ease;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            font-size: 2rem;
+            color: var(--bg-sidebar);
+            margin-bottom: 5px;
+        }
+
+        .content-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Metrics Cards Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            position: relative;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--bg-sidebar);
+        }
+
+        .metric-trend {
+            font-size: 0.85rem;
+            font-weight: 700;
+            align-self: flex-start;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .trend-up {
+            color: var(--success-color);
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+
+      
+        .gsc-section {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            margin-top: 25px;
+        }
+
+        .gsc-title {
+            font-size: 1.2rem;
+            color: var(--bg-sidebar);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .brand-section { padding: 15px; flex-direction: row; justify-content: center; gap: 15px; }
+            .logo { width: 40px; margin-bottom: 0; }
+            .tab-menu { flex-direction: row; margin-top: 0; justify-content: space-around; background-color: rgba(0,0,0,0.05); }
+            .tab-link { padding: 12px; flex-grow: 1; justify-content: center; border-left: none; border-bottom: 3px solid transparent; }
+            .tab-link.active { border-bottom-color: var(--accent-blue); }
+            .main-content { padding: 20px; }
+            .content-title { font-size: 1.5rem; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Sidebar Wrapper -->
+    <div class="sidebar">
+        <div class="brand-section">
+            <!-- Replace placeholder with your real asset path if needed -->
+            <img src="Images/Logo.jpeg" alt="Hammerhead Gaming Logo" class="logo">
+            <div class="studio-title">Hammerhead Gaming Industries</div>
+        </div>
+        <div class="tab-menu">
+            <a href="#" class="tab-link active">Overview</a>
+            <a href="#" class="tab-link">Content</a>
+            <a href="#" class="tab-link">stuff</a>
+            <a href="#" class="tab-link">Settings</a>
+        </div>
+    </div>
+
+    <!-- Main Content Workspace (Right Pane) -->
+    <div class="main-content">
+        <div class="page-content">
+            
+            <h1 class="content-title">Admin Dashboard</h1>
+            <p class="content-subtitle"></p>
+
+            <!-- Metrics Performance Grid Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">Total Impressions</span>
+                    <span class="metric-value">45.2K</span>
+                    <span class="metric-trend trend-up">↑ 12.4%</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Total Clicks</span>
+                    <span class="metric-value">3,120</span>
+                    <span class="metric-trend trend-up">↑ 8.1%</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Average CTR</span>
+                    <span class="metric-value">6.9%</span>
+                    <span class="metric-trend trend-up">↑ 0.5%</span>
+                </div>
+            </div>
+
+            <!-- Integrated Looker Studio / Google Search Console Window -->
+            <div class="gsc-section">
+                <h2 class="gsc-title">Google Search Console Integration</h2>
+                <div class="iframe-container">
+                    <!-- Drop your personalized Looker Studio embedding URL link right inside the src below -->
+                    <iframe src="https://google.com" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
